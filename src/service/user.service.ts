@@ -23,4 +23,31 @@ export class UserService {
         const newUser = new this.userModel(reqBody);
         return newUser.save();
     }
+
+    async login(user: User, jwt: JwtService): Promise<any> {
+        const foundUser = await this.userModel
+            .findOne({ email: user.email })
+            .exec();
+        if (foundUser) {
+            const { password } = foundUser;
+            if (bcrypt.compare(user.password, password)) {
+                const payload = { email: email.user };
+                return {
+                    token: jwt.sign(payload)
+                };
+            }
+            return new HttpException(
+                "Incorrect username or password",
+                HttpStatus.UNAUTHORIZED
+            );
+        }
+        return new HttpException(
+            "Incorrect username or password",
+            HttpStatus.UNAUTHORIZED
+        );
+    }
+
+    async getOne(email): Promise<User> {
+        await this.userModel.findOne({ email }).exec();
+    }
 }
