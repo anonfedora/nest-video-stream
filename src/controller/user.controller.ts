@@ -12,7 +12,7 @@ import {
     Res
 } from "@nestjs/common";
 import { User } from "../model/user.schema";
-import { UserService } from "../model/user.service";
+import { UserService } from "../service/user.service";
 import { JwtService } from "@nestjs/jwt";
 
 @Controller("/api/v1/user")

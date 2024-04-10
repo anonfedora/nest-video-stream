@@ -62,7 +62,7 @@ export class VideoController {
 
     @Put(":/id")
     async update(@Res() res, @Param("id") id, @Body() video: Video) {
-        const updateVideo = await this.videoService.update(id);
+        const updateVideo = await this.videoService.update(id, video);
         return res.status(HttpStatus.OK).json(updateVideo);
     }
 

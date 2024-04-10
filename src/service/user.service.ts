@@ -48,6 +48,6 @@ export class UserService {
     }
 
     async getOne(email): Promise<User> {
-        await this.userModel.findOne({ email }).exec();
+        return await this.userModel.findOne({ email }).exec();
     }
 }
