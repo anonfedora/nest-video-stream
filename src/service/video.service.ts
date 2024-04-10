@@ -67,4 +67,12 @@ export class VideoService {
             throw new ServiceUnavailableException();
         }
     }
+
+    async update(id, video: Video): Promise<Video> {
+        return await this.videoModel.findByIdAndUpdate(id, video);
+    }
+
+    async delete(id): Promise<any> {
+        return await this.videoModel.findByIdAndDelete(id);
+    }
 }
