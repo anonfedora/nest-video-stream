@@ -13,6 +13,7 @@ import { VideoService } from "./service/video.service";
 import { UserService } from "./service/user.service";
 import { Video, VideoSchema } from "./model/video.schema";
 import { User, UserSchema } from "./model/user.schema";
+import { SECRET } from "./utils/constants";
 import "dotenv/config";
 
 @Module({
@@ -28,7 +29,7 @@ import "dotenv/config";
             })
         }),
         JwtModule.register({
-            process.env.SECRET,
+            SECRET,
             signOptions: { expiresIn: "2h" }
         }),
         ServeStaticModule.forRoot({
