@@ -13,7 +13,9 @@ import { VideoService } from "./service/video.service";
 import { UserService } from "./service/user.service";
 import { Video, VideoSchema } from "./model/video.schema";
 import { User, UserSchema } from "./model/user.schema";
-import { SECRET } from "./utils/constants";
+import { secret } from "./utils/constants";
+import { join } from "path/posix";
+import { isAuthenticated } from "./app.middleware";
 import "dotenv/config";
 
 @Module({
@@ -29,7 +31,7 @@ import "dotenv/config";
             })
         }),
         JwtModule.register({
-            SECRET,
+            secret,
             signOptions: { expiresIn: "2h" }
         }),
         ServeStaticModule.forRoot({
