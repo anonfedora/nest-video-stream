@@ -14,7 +14,7 @@ import {
     Query
 } from "@nestjs/common";
 import { Video } from "../model/video.schema";
-import { VideoService } from "../video.service";
+import { VideoService } from "../service/video.service";
 import {
     FileFieldsInterceptor,
     FilesInterceptor
@@ -67,7 +67,7 @@ export class VideoController {
     }
 
     @Delete(":/id")
-    delete(@Res() res, @Param("id") id) {
+    async delete(@Res() res, @Param("id") id) {
         await this.videoService.delete(id);
         return res.status(HttpStatus.OK).json({
             user: null

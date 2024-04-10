@@ -28,7 +28,7 @@ import "dotenv/config";
             })
         }),
         JwtModule.register({
-            secret,
+            process.env.SECRET,
             signOptions: { expiresIn: "2h" }
         }),
         ServeStaticModule.forRoot({

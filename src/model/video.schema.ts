@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-import { User } from "./user.model";
+import { User } from "./user.schema";
 
 export type VideoDocument = Video & Document;
 
@@ -18,7 +18,7 @@ export class Video {
     @Prop({ default: Date.now() })
     uploadDate: Date;
 
-    @Prop({ type: mongoose.SchemaTypes.ObjectId, ref: "User" })
+    @Prop({ type: SchemaTypes.ObjectId, ref: "User" })
     createdBy: User;
 }
 

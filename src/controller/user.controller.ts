@@ -22,7 +22,7 @@ export class UserController {
         private jwtService: JwtService
     ) {}
 
-    @Post("/login")
+    @Post("/signup")
     async signup(@Res() res, @Body() user: User) {
         const newUser = await this.userService.signup(user);
         return res.status(HttpStatus.CREATED).json({
@@ -32,7 +32,7 @@ export class UserController {
 
     @Post("/signin")
     async signin(@Res() res, @Body() user: User) {
-        const token = await this.jwtService.signin(user, this.jwtService);
+        const token = await this.userService.signin(user, this.jwtService);
         return res.status(HttpStatus.OK).json(token);
     }
 }
